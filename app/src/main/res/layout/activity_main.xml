@@ -15,7 +15,6 @@
 
 
 
-
     <TextView
         android:id="@+id/Title"
         android:layout_width="match_parent"
@@ -30,6 +29,7 @@
 
     <TextView
         android:id="@+id/ResultID"
+        android:layout_marginEnd="10dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical|end"
@@ -37,10 +37,10 @@
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/Sum"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Title"
 
-        />
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <Button
         android:id="@+id/Sum"
