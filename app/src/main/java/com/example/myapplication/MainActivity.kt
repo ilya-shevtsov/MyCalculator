@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonOne: Button
     private lateinit var buttonTwo: Button
     private lateinit var result: TextView
+    private var startResult = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,13 +19,21 @@ class MainActivity : AppCompatActivity() {
         buttonOne = findViewById(R.id.One)
         buttonTwo = findViewById(R.id.Two)
         result = findViewById(R.id.ResultID)
+        result.text = startResult
+
+        result.setOnClickListener{
+            startResult = "0"
+            result.text = "0"
+        }
 
         buttonOne.setOnClickListener{
-            result.text = getString(R.string.One)
+            startResult += getString(R.string.One)
+            result.text = startResult
         }
 
         buttonTwo.setOnClickListener{
-            result.text = getString(R.string.Two)
+            startResult += getString(R.string.Two)
+            result.text = startResult
         }
 
     }
