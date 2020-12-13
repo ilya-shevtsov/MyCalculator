@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonClearAll: Button
 
     private lateinit var result: TextView
-    private var startResult = " "
+    private var calculationBar = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,149 +49,147 @@ class MainActivity : AppCompatActivity() {
         result = findViewById(R.id.resultID)
 
         buttonClearAll.setOnClickListener {
-            startResult = " "
+            calculationBar = " "
             result.text = "0"
         }
 
         buttonZero.setOnClickListener {
-            startResult += getString(R.string.Zero)
-            result.text = startResult
+            calculationBar += getString(R.string.Zero)
+            result.text = calculationBar
         }
 
         buttonOne.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "1"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "1"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.One)
-                result.text = startResult
+                calculationBar += getString(R.string.One)
+                result.text = calculationBar
             }
         }
 
         buttonTwo.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "2"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "2"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Two)
-                result.text = startResult
+                calculationBar += getString(R.string.Two)
+                result.text = calculationBar
             }
         }
 
         buttonThree.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "3"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "3"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Three)
-                result.text = startResult
+                calculationBar += getString(R.string.Three)
+                result.text = calculationBar
             }
         }
 
         buttonFour.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "4"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "4"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Four)
-                result.text = startResult
+                calculationBar += getString(R.string.Four)
+                result.text = calculationBar
             }
         }
 
         buttonFive.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "5"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "5"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Five)
-                result.text = startResult
+                calculationBar += getString(R.string.Five)
+                result.text = calculationBar
             }
         }
 
         buttonSix.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "6"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "6"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Six)
-                result.text = startResult
+                calculationBar += getString(R.string.Six)
+                result.text = calculationBar
             }
         }
 
         buttonSeven.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "7"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "7"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Seven)
-                result.text = startResult
+                calculationBar += getString(R.string.Seven)
+                result.text = calculationBar
             }
         }
 
         buttonEight.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "8"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "8"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Eight)
-                result.text = startResult
+                calculationBar += getString(R.string.Eight)
+                result.text = calculationBar
             }
         }
 
         buttonNine.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "9"
-                result.text = startResult
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "9"
+                result.text = calculationBar
             } else {
-                startResult += getString(R.string.Nine)
-                result.text = startResult
+                calculationBar += getString(R.string.Nine)
+                result.text = calculationBar
             }
         }
 
 
         buttonSum.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "0"
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "0"
                 result.text = "0"
             }
-            if (startResult.last().toString() != getString(R.string.Sum)) {
-                startResult += getString(R.string.Sum)
-                result.text = startResult
+            if (calculationBar.last().toString() != getString(R.string.Sum)) {
+                calculationBar += getString(R.string.Sum)
+                result.text = calculationBar
             }
         }
         buttonMinus.setOnClickListener {
-            if (startResult.first().toString() == " ") {
-                startResult = "0"
+            if (calculationBar.first().toString() == " ") {
+                calculationBar = "0"
                 result.text = "0"
             }
-            if (startResult.last().toString() != getString(R.string.Minus)) {
-                startResult += getString(R.string.Minus)
-                result.text = startResult
+            if (calculationBar.last().toString() != getString(R.string.Minus)) {
+                calculationBar += getString(R.string.Minus)
+                result.text = calculationBar
             }
         }
 
         buttonCalculate.setOnClickListener {
-            if (startResult.last().toString() != getString(R.string.Sum)) {
+            if (calculationBar.last().toString() != getString(R.string.Sum)) {
                 val calculationResult = calculate()
                 result.text = calculationResult
-                startResult = calculationResult
+                calculationBar = calculationResult
             }
         }
     }
 
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
-        val expressionList = startResult.split(reg).map { numberString ->
+        val expressionList = calculationBar.split(reg).map { numberString ->
             numberString.replace(" ", "")
         }
-
+        var startResult = 0
+        var lastElement = ""
+        var previousElement = ""
         expressionList.forEach{element ->
-
+            if (element = "+")
         }
-        numbersSting.for
-
-
-
 
         return numbersSting.toString()
     }
