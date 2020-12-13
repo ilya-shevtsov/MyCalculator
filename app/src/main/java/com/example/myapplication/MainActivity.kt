@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonNine: Button
 
     private lateinit var buttonSum: Button
+    private lateinit var buttonMinus: Button
     private lateinit var buttonCalculate: Button
     private lateinit var buttonClearAll: Button
 
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         buttonNine = findViewById(R.id.nine)
 
         buttonSum = findViewById(R.id.sum)
+        buttonMinus = findViewById(R.id.minus)
         buttonCalculate = findViewById(R.id.calculate)
         buttonClearAll = findViewById(R.id.clearAll)
 
@@ -64,47 +66,86 @@ class MainActivity : AppCompatActivity() {
                 startResult += getString(R.string.One)
                 result.text = startResult
             }
-
         }
 
         buttonTwo.setOnClickListener {
-            startResult += getString(R.string.Two)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "2"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Two)
+                result.text = startResult
+            }
         }
 
         buttonThree.setOnClickListener {
-            startResult += getString(R.string.Three)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "3"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Three)
+                result.text = startResult
+            }
         }
 
         buttonFour.setOnClickListener {
-            startResult += getString(R.string.Four)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "4"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Four)
+                result.text = startResult
+            }
         }
 
         buttonFive.setOnClickListener {
-            startResult += getString(R.string.Five)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "5"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Five)
+                result.text = startResult
+            }
         }
 
         buttonSix.setOnClickListener {
-            startResult += getString(R.string.Six)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "6"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Six)
+                result.text = startResult
+            }
         }
 
         buttonSeven.setOnClickListener {
-            startResult += getString(R.string.Seven)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "7"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Seven)
+                result.text = startResult
+            }
         }
 
         buttonEight.setOnClickListener {
-            startResult += getString(R.string.Eight)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "8"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Eight)
+                result.text = startResult
+            }
         }
 
         buttonNine.setOnClickListener {
-            startResult += getString(R.string.Nine)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "9"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.Nine)
+                result.text = startResult
+            }
         }
 
 
@@ -118,21 +159,24 @@ class MainActivity : AppCompatActivity() {
                 result.text = startResult
             }
         }
-
-        buttonCalculate.setOnClickListener {
-            if (startResult.last().toString() == "+") {
-                startResult.dropLast(1)
+        buttonMinus.setOnClickListener {
+            if (startResult.first().toString() == " ") {
+                startResult = "0"
+                result.text = "0"
+            }
+            if (startResult.last().toString() != getString(R.string.Minus)) {
+                startResult += getString(R.string.Minus)
                 result.text = startResult
             }
+        }
+
+        buttonCalculate.setOnClickListener {
             if (startResult.last().toString() != getString(R.string.Sum)) {
                 val calculationResult = calculate()
                 result.text = calculationResult
                 startResult = calculationResult
-
             }
         }
-
-
     }
 
     private fun calculate(): String {
