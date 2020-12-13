@@ -180,10 +180,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculate(): String {
-        val split = startResult.split( "+","-")
-        val numbers = split.map { numberString ->
-            numberString.replace(" ", "").toInt()
+        val reg = Regex("(?<=[-+])|(?=[+-])")
+        val expressionList = startResult.split(reg).map { numberString ->
+            numberString.replace(" ", "")
         }
-        return numbers.sum().toString()
+
+        expressionList.forEach{element ->
+
+        }
+        numbersSting.for
+
+
+
+
+        return numbersSting.toString()
     }
 }
+
+//val split = startResult.split( "+","-")
+//val numbers = split.map { numberString ->
+//    numberString.replace(" ", "").toInt()
+//}
+//return numbers.sum().toString()
