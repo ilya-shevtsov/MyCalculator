@@ -20,34 +20,35 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var buttonSum: Button
     private lateinit var buttonCalculate: Button
+    private lateinit var buttonClearAll: Button
+
     private lateinit var result: TextView
-    private lateinit var ClearAll: Button
     private var startResult = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        buttonZero = findViewById(R.id.Zero)
-        buttonOne = findViewById(R.id.One)
-        buttonTwo = findViewById(R.id.Two)
-        buttonThree = findViewById(R.id.Three)
-        buttonFour = findViewById(R.id.Four)
-        buttonFive = findViewById(R.id.Five)
-        buttonSix = findViewById(R.id.Six)
-        buttonSeven = findViewById(R.id.Seven)
-        buttonEight = findViewById(R.id.Eight)
-        buttonNine = findViewById(R.id.Nine)
+        buttonZero = findViewById(R.id.zero)
+        buttonOne = findViewById(R.id.one)
+        buttonTwo = findViewById(R.id.two)
+        buttonThree = findViewById(R.id.three)
+        buttonFour = findViewById(R.id.four)
+        buttonFive = findViewById(R.id.five)
+        buttonSix = findViewById(R.id.six)
+        buttonSeven = findViewById(R.id.seven)
+        buttonEight = findViewById(R.id.eight)
+        buttonNine = findViewById(R.id.nine)
 
-        buttonSum = findViewById(R.id.Sum)
-        buttonCalculate = findViewById(R.id.Calculate)
+        buttonSum = findViewById(R.id.sum)
+        buttonCalculate = findViewById(R.id.calculate)
+        buttonClearAll = findViewById(R.id.clearAll)
 
-        result = findViewById(R.id.ResultID)
-        result.text = startResult
+        result = findViewById(R.id.resultID)
 
-        ClearAll.setOnClickListener {
+        buttonClearAll.setOnClickListener {
             startResult = " "
-            result.text = " "
+            result.text = "0"
         }
 
         buttonZero.setOnClickListener {
@@ -56,8 +57,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonOne.setOnClickListener {
-            startResult += getString(R.string.One)
-            result.text = startResult
+            if (startResult.first().toString() == " ") {
+                startResult = "1"
+                result.text = startResult
+            } else {
+                startResult += getString(R.string.One)
+                result.text = startResult
+            }
+
         }
 
         buttonTwo.setOnClickListener {
@@ -102,6 +109,10 @@ class MainActivity : AppCompatActivity() {
 
 
         buttonSum.setOnClickListener {
+            if(startResult.first().toString() == " "){
+                startResult = "0"
+                result.text = "0"
+            }
             if (startResult.last().toString() != getString(R.string.Sum)) {
                 startResult += getString(R.string.Sum)
                 result.text = startResult

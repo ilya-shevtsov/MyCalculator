@@ -15,7 +15,7 @@
 
 
     <TextView
-        android:id="@+id/Title"
+        android:id="@+id/headText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -27,66 +27,66 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ResultID"
+        android:id="@+id/resultID"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="10dp"
         android:gravity="center_vertical|end"
         android:text="@string/Result"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/Sum"
+        app:layout_constraintBottom_toTopOf="@+id/sum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Title" />
+        app:layout_constraintTop_toBottomOf="@+id/headText" />
 
 
     <Button
-        android:id="@+id/Sum"
+        android:id="@+id/sum"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Sum"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/Divide"
+        app:layout_constraintBottom_toTopOf="@+id/divide"
         app:layout_constraintEnd_toStartOf="@+id/multiply"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ResultID" />
+        app:layout_constraintTop_toBottomOf="@id/resultID" />
 
     <Button
-        android:id="@+id/Minus"
+        android:id="@+id/minus"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Minus"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/Sum"
-        app:layout_constraintEnd_toStartOf="@+id/Calculate"
-        app:layout_constraintStart_toEndOf="@+id/Sum"
-        app:layout_constraintTop_toTopOf="@id/Sum" />
+        app:layout_constraintBottom_toBottomOf="@id/sum"
+        app:layout_constraintEnd_toStartOf="@+id/calculate"
+        app:layout_constraintStart_toEndOf="@+id/sum"
+        app:layout_constraintTop_toTopOf="@id/sum" />
 
     <Button
-        android:id="@+id/Calculate"
+        android:id="@+id/calculate"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Calculate"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/Sum"
+        app:layout_constraintBottom_toBottomOf="@id/sum"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Minus"
-        app:layout_constraintTop_toTopOf="@id/Sum" />
+        app:layout_constraintStart_toEndOf="@+id/minus"
+        app:layout_constraintTop_toTopOf="@id/sum" />
 
     <Button
-        android:id="@+id/Divide"
+        android:id="@+id/divide"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Divide"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/One"
-        app:layout_constraintEnd_toStartOf="@+id/Minus"
+        app:layout_constraintBottom_toTopOf="@+id/one"
+        app:layout_constraintEnd_toStartOf="@+id/minus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Sum" />
+        app:layout_constraintTop_toBottomOf="@id/sum" />
 
     <Button
         android:id="@+id/multiply"
@@ -95,99 +95,99 @@
         android:background="@color/black"
         android:text="@string/Multiply"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/Divide"
-        app:layout_constraintEnd_toStartOf="@+id/Calculate"
-        app:layout_constraintStart_toEndOf="@+id/Sum"
-        app:layout_constraintTop_toTopOf="@id/Divide" />
+        app:layout_constraintBottom_toBottomOf="@id/divide"
+        app:layout_constraintEnd_toStartOf="@+id/calculate"
+        app:layout_constraintStart_toEndOf="@+id/sum"
+        app:layout_constraintTop_toTopOf="@id/divide" />
 
     <Button
-        android:id="@+id/Zero"
+        android:id="@+id/zero"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Zero"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/Divide"
+        app:layout_constraintBottom_toBottomOf="@id/divide"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Minus"
-        app:layout_constraintTop_toTopOf="@id/Divide" />
+        app:layout_constraintStart_toEndOf="@+id/minus"
+        app:layout_constraintTop_toTopOf="@id/divide" />
 
     <Button
-        android:id="@+id/One"
+        android:id="@+id/one"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/One"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/Four"
-        app:layout_constraintEnd_toStartOf="@+id/Two"
+        app:layout_constraintBottom_toTopOf="@+id/four"
+        app:layout_constraintEnd_toStartOf="@+id/two"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/GuidLineMiddle" />
 
     <Button
-        android:id="@+id/Two"
+        android:id="@+id/two"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Two"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/One"
-        app:layout_constraintEnd_toStartOf="@+id/Three"
-        app:layout_constraintStart_toEndOf="@+id/One"
-        app:layout_constraintTop_toTopOf="@id/One" />
+        app:layout_constraintBottom_toBottomOf="@id/one"
+        app:layout_constraintEnd_toStartOf="@+id/three"
+        app:layout_constraintStart_toEndOf="@+id/one"
+        app:layout_constraintTop_toTopOf="@id/one" />
 
     <Button
-        android:id="@+id/Three"
+        android:id="@+id/three"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Three"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/One"
+        app:layout_constraintBottom_toBottomOf="@id/one"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Two"
-        app:layout_constraintTop_toTopOf="@id/One" />
+        app:layout_constraintStart_toEndOf="@+id/two"
+        app:layout_constraintTop_toTopOf="@id/one" />
 
     <Button
-        android:id="@+id/Four"
+        android:id="@+id/four"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Four"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/Seven"
-        app:layout_constraintEnd_toStartOf="@+id/Two"
+        app:layout_constraintBottom_toTopOf="@+id/seven"
+        app:layout_constraintEnd_toStartOf="@+id/two"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/One" />
+        app:layout_constraintTop_toBottomOf="@id/one" />
 
     <Button
-        android:id="@+id/Five"
+        android:id="@+id/five"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Five"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@+id/Four"
-        app:layout_constraintEnd_toStartOf="@+id/Three"
-        app:layout_constraintStart_toEndOf="@+id/One"
-        app:layout_constraintTop_toBottomOf="@id/Two"
-        app:layout_constraintTop_toTopOf="@+id/Four" />
+        app:layout_constraintBottom_toBottomOf="@+id/four"
+        app:layout_constraintEnd_toStartOf="@+id/three"
+        app:layout_constraintStart_toEndOf="@+id/one"
+        app:layout_constraintTop_toBottomOf="@id/two"
+        app:layout_constraintTop_toTopOf="@+id/four" />
 
     <Button
-        android:id="@+id/Six"
+        android:id="@+id/six"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Six"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@+id/Four"
+        app:layout_constraintBottom_toBottomOf="@+id/four"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Two"
-        app:layout_constraintTop_toBottomOf="@id/Three"
-        app:layout_constraintTop_toTopOf="@+id/Four" />
+        app:layout_constraintStart_toEndOf="@+id/two"
+        app:layout_constraintTop_toBottomOf="@id/three"
+        app:layout_constraintTop_toTopOf="@+id/four" />
 
     <Button
-        android:id="@+id/Seven"
+        android:id="@+id/seven"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
@@ -195,48 +195,48 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/clearAll"
-        app:layout_constraintEnd_toStartOf="@+id/Two"
+        app:layout_constraintEnd_toStartOf="@+id/two"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Four" />
+        app:layout_constraintTop_toBottomOf="@+id/four" />
 
 
     <Button
-        android:id="@+id/Eight"
+        android:id="@+id/eight"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Eight"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/Seven"
-        app:layout_constraintEnd_toStartOf="@+id/Three"
-        app:layout_constraintStart_toEndOf="@+id/One"
-        app:layout_constraintTop_toBottomOf="@id/Seven"
-        app:layout_constraintTop_toTopOf="@id/Seven" />
+        app:layout_constraintBottom_toBottomOf="@id/seven"
+        app:layout_constraintEnd_toStartOf="@+id/three"
+        app:layout_constraintStart_toEndOf="@+id/one"
+        app:layout_constraintTop_toBottomOf="@id/seven"
+        app:layout_constraintTop_toTopOf="@id/seven" />
 
     <Button
-        android:id="@+id/Nine"
+        android:id="@+id/nine"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/Nine"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@id/Seven"
+        app:layout_constraintBottom_toBottomOf="@id/seven"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Two"
-        app:layout_constraintTop_toBottomOf="@id/Seven"
-        app:layout_constraintTop_toTopOf="@id/Seven" />
+        app:layout_constraintStart_toEndOf="@+id/two"
+        app:layout_constraintTop_toBottomOf="@id/seven"
+        app:layout_constraintTop_toTopOf="@id/seven" />
 
     <Button
         android:id="@+id/clearAll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/black"
         android:text="@string/ClearAll"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Seven" />
+        app:layout_constraintTop_toBottomOf="@+id/seven" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
