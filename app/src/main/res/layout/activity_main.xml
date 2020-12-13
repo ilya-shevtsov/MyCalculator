@@ -10,9 +10,8 @@
         android:id="@+id/GuidLineMiddle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.5"
         android:orientation="horizontal"
-        />
+        app:layout_constraintGuide_percent="0.5" />
 
     <TextView
         android:id="@+id/Title"
@@ -28,28 +27,55 @@
 
     <TextView
         android:id="@+id/ResultID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textAlignment="viewEnd"
         android:text="@string/Result"
         android:textSize="50sp"
-        android:gravity="end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/Calculate"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/Sum"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
 
         />
 
     <Button
+        android:id="@+id/Sum"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:text="@string/Sum"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/One"
+        app:layout_constraintEnd_toStartOf="@+id/Minus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ResultID"
+       />
+
+    <Button
+        android:id="@+id/Minus"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:text="@string/Minus"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@id/Sum"
+        app:layout_constraintEnd_toStartOf="@+id/Calculate"
+        app:layout_constraintStart_toEndOf="@+id/Sum"
+        app:layout_constraintTop_toTopOf="@id/Sum" />
+
+    <Button
         android:id="@+id/Calculate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
         android:text="@string/Calculate"
         android:textSize="40sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/One"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/Sum"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/black"
-        />
+        app:layout_constraintStart_toEndOf="@+id/Minus"
+        app:layout_constraintTop_toTopOf="@id/Sum" />
+
     <Button
         android:id="@+id/One"
         android:layout_width="0dp"
@@ -131,10 +157,10 @@
         android:background="@color/black"
         android:text="@string/Seven"
         android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Two"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Four"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/Four" />
 
     <Button
         android:id="@+id/Eight"
