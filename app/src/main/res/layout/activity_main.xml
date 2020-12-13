@@ -13,6 +13,9 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
+
+
+
     <TextView
         android:id="@+id/Title"
         android:layout_width="match_parent"
@@ -29,7 +32,7 @@
         android:id="@+id/ResultID"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textAlignment="viewEnd"
+        android:gravity="center_vertical|end"
         android:text="@string/Result"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/Sum"
