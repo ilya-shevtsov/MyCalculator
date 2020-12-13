@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="Title">A simple calculator</string>
     <string name="Result">0</string>
+    <string name="Zero">0</string>
     <string name="One">1</string>
     <string name="Two">2</string>
     <string name="Three">3</string>
@@ -14,5 +15,12 @@
     <string name="Calculate">=</string>
     <string name="Sum">+</string>
     <string name="Minus">-</string>
+    <string name="Divide">/</string>
+    <string name="Multiply">*</string>
+    <string name="ClearAll">Clear All</string>
+
+
+    <string name="esterEgg">RUN!</string>
+    <string name="esterEggVal">4+8+15+16+23+42</string>
 
 </resources>
