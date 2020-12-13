@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculate(): String {
-        val split = startResult.split("+")
+        val split = startResult.split( "+","-")
         val numbers = split.map { numberString ->
             numberString.replace(" ", "").toInt()
         }
