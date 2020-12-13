@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
 
         buttonSum.setOnClickListener {
-            if(startResult.first().toString() == " "){
+            if (startResult.first().toString() == " ") {
                 startResult = "0"
                 result.text = "0"
             }
@@ -120,6 +120,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonCalculate.setOnClickListener {
+            if (startResult.last().toString() == "+") {
+                startResult.dropLast(1)
+                result.text = startResult
+            }
             if (startResult.last().toString() != getString(R.string.Sum)) {
                 val calculationResult = calculate()
                 result.text = calculationResult
