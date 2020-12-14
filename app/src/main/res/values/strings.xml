@@ -21,5 +21,6 @@
 
 
     <string name="esterEgg">RUN!</string>
+    <string name="esterEggVal">4+8+15+16+23+42</string>
 
 </resources>

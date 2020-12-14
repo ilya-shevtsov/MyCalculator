@@ -171,13 +171,17 @@ class MainActivity : AppCompatActivity() {
 
         buttonCalculate.setOnClickListener {
             if (calculationBar.last().toString() != getString(R.string.Sum) && calculationBar.last().toString() != getString(R.string.Minus)) {
-                val calculationResult = calculate()
-                if (calculationResult == "0") {
-                    calculationBar = " "
-                    result.text = "0"
+                if (calculationBar == getString(R.string.esterEggVal)) {
+                    result.text = getString(R.string.esterEgg)
                 } else {
-                    calculationBar = calculationResult
-                    result.text = calculationResult
+                    val calculationResult = calculate()
+                    if (calculationResult == "0") {
+                        calculationBar = " "
+                        result.text = "0"
+                    } else {
+                        calculationBar = calculationResult
+                        result.text = calculationResult
+                    }
                 }
             }
         }
