@@ -184,14 +184,31 @@ class MainActivity : AppCompatActivity() {
         val expressionList = calculationBar.split(reg).map { numberString ->
             numberString.replace(" ", "")
         }
-        var startResult = 0
-        var lastElement = ""
-        var previousElement = ""
-        expressionList.forEach{element ->
-            if (element = "+")
+        var result = 0
+        var operatorElement = ""
+        expressionList.forEachIndexed { index, element ->
+
+            if (element == "+") {
+                operatorElement = "+"
+
+            } else if (element == "-") {
+                operatorElement = "-"
+
+            } else {
+                if (index == 0) {
+                    result = element.toInt()
+                } else {
+                    if (operatorElement == "+") {
+                        result += element.toInt()
+                    } else {
+                        result -= element.toInt()
+                    }
+                }
+
+            }
         }
 
-        return numbersSting.toString()
+        return result.toString()
     }
 }
 
