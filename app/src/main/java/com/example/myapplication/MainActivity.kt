@@ -174,10 +174,17 @@ class MainActivity : AppCompatActivity() {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
                 } else {
+
                     val calculationResult = calculate()
+
                     if (calculationResult == "0") {
                         calculationBar = " "
                         result.text = "0"
+
+                    } else if (calculationResult.first() == '-') {
+                        calculationBar = "0$calculationResult"
+                        result.text = calculationResult
+
                     } else {
                         calculationBar = calculationResult
                         result.text = calculationResult
