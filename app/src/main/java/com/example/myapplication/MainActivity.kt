@@ -148,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         buttonSum.setOnClickListener {
             if (calculationBar.first().toString() == " ") {
                 calculationBar = "0"
@@ -171,48 +170,58 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonCalculate.setOnClickListener {
-            if (calculationBar.last().toString() != getString(R.string.Sum)) {
-                val calculationResult = calculate()
-                result.text = calculationResult
-                calculationBar = calculationResult
+            if (calculationBar.last().toString() != getString(R.string.Sum) && calculationBar.last().toString() != getString(R.string.Minus)) {
+                if (calculationBar == getString(R.string.esterEggVal)) {
+                    result.text = getString(R.string.esterEgg)
+                } else {
+
+                    val calculationResult = calculate()
+
+                    if (calculationResult == "0") {
+                        calculationBar = " "
+                        result.text = "0"
+
+                    } else if (calculationResult.first() == '-') {
+                        calculationBar = "0$calculationResult"
+                        result.text = calculationResult
+
+                    } else {
+                        calculationBar = calculationResult
+                        result.text = calculationResult
+                    }
+                }
             }
         }
     }
 
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
+        var result = 0
+        var operatorElement = ""
+
         val expressionList = calculationBar.split(reg).map { numberString ->
             numberString.replace(" ", "")
         }
-        var result = 0
-        var operatorElement = ""
-        expressionList.forEachIndexed { index, element ->
 
-            if (element == "+") {
+        expressionList.forEachIndexed { index, element ->
+            if (index == 0) {
+                result = element.toInt()
+
+            } else if (element == "+") {
                 operatorElement = "+"
 
             } else if (element == "-") {
                 operatorElement = "-"
 
             } else {
-                if (index == 0) {
-                    result = element.toInt()
+                if (operatorElement == "+") {
+                    result += element.toInt()
+
                 } else {
-                    if (operatorElement == "+") {
-                        result += element.toInt()
-                    } else {
-                        result -= element.toInt()
-                    }
+                    result -= element.toInt()
                 }
             }
         }
-
         return result.toString()
     }
 }
-
-//val split = startResult.split( "+","-")
-//val numbers = split.map { numberString ->
-//    numberString.replace(" ", "").toInt()
-//}
-//return numbers.sum().toString()
