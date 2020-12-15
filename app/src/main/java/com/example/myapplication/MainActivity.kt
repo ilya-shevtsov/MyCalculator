@@ -163,7 +163,8 @@ class MainActivity : AppCompatActivity() {
                 calculationBar = "0$separateCalRes"
                 calculationBar += getString(R.string.Sum)
                 result.text = calculationBar.removePrefix("0")
-            } else {
+            }
+            if (calculationBar.last().toString() != getString(R.string.Sum) && calculationBar.last().toString() != getString(R.string.Minus)){
                 calculationBar += getString(R.string.Sum)
                 result.text = calculationBar
             }
@@ -173,15 +174,14 @@ class MainActivity : AppCompatActivity() {
                 calculationBar = "0"
                 result.text = "0"
             }
-            if (calculationBar.last().toString() != getString(R.string.Minus)) {
-                if (calculationBar.first().toString() == "-") {
-                    calculationBar = "0$separateCalRes"
-                    calculationBar += getString(R.string.Minus)
-                    result.text = calculationBar.removePrefix("0")
-                } else {
-                    calculationBar += getString(R.string.Minus)
-                    result.text = calculationBar
-                }
+            if (calculationBar.first().toString() == "-") {
+                calculationBar = "0$separateCalRes"
+                calculationBar += getString(R.string.Minus)
+                result.text = calculationBar.removePrefix("0")
+            }
+            if (calculationBar.last().toString() != getString(R.string.Minus) && calculationBar.last().toString() != getString(R.string.Sum)){
+                calculationBar += getString(R.string.Minus)
+                result.text = calculationBar
             }
         }
 
