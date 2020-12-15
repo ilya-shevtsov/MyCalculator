@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -170,27 +171,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonCalculate.setOnClickListener {
-            if (calculationBar.last().toString() != getString(R.string.Sum) && calculationBar.last().toString() != getString(R.string.Minus)) {
+            if (calculationBar.last().toString() != getString(R.string.Sum) &&
+                    calculationBar.last().toString() != getString(R.string.Minus)) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
                 } else {
 
                     val calculationResult = calculate()
 
-                    if (calculationResult == "0") {
-                        calculationBar = " "
-                        result.text = "0"
 
-                    } else if (calculationResult.first() == '-') {
-                        calculationBar = "0$calculationResult"
-                        result.text = calculationResult
+                    when {
+                        calculationResult == "0" -> {
+                            calculationBar = " "
+                            result.text = "0"
 
-                    } else {
-                        calculationBar = calculationResult
-                        result.text = calculationResult
+                        }
+                        calculationResult.first() == '-' -> {
+                            calculationBar = "0$calculationResult"
+                            result.text = calculationResult
+
+                        }
+                        else -> {
+                            calculationBar = calculationResult
+                            result.text = calculationResult
+                        }
                     }
                 }
             }
+            Toast.makeText(applicationContext, R.string.ToastMassage,
+                    Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -224,4 +233,6 @@ class MainActivity : AppCompatActivity() {
         }
         return result.toString()
     }
+
+
 }
