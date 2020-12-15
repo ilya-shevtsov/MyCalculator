@@ -8,6 +8,12 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val START_CHAR = "0"
+        private val operators = listOf("+","-")
+    }
+
+
     private lateinit var buttonZero: Button
     private lateinit var buttonOne: Button
     private lateinit var buttonTwo: Button
@@ -99,58 +105,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonSum.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "0"
-                result.text = "0"
-            }
-            if (calculationBar.first().toString() == "-") {
-                calculationBar = "0$calculationBar"
-                calculationBar += getString(R.string.Sum)
-                result.text = calculationBar.removePrefix("0")
-            }
-            if (calculationBar.last().toString() != getString(R.string.Sum)
-                    && calculationBar.last().toString() != getString(R.string.Minus)) {
-                calculationBar += getString(R.string.Sum)
-                result.text = calculationBar
-            }
+            handleOperatorButton("+")
         }
 
         buttonMinus.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "0"
-                result.text = "0"
-            }
-            if (calculationBar.first().toString() == "-") {
-                calculationBar = "0$calculationBar"
-                calculationBar += getString(R.string.Minus)
-                result.text = calculationBar.removePrefix("0")
-            }
-            if (calculationBar.last().toString() != getString(R.string.Minus)
-                    && calculationBar.last().toString() != getString(R.string.Sum)) {
-                calculationBar += getString(R.string.Minus)
-                result.text = calculationBar
-            }
+            handleOperatorButton("-")
         }
 
         buttonCalculate.setOnClickListener {
             if (calculationBar.last().toString() != getString(R.string.Sum)
-                    && calculationBar.last().toString() != getString(R.string.Minus)
-                    && calculationBar.first().toString() != getString(R.string.Sum)
-                    && calculationBar.first().toString() != getString(R.string.Minus)) {
+                    && calculationBar.last().toString() != getString(R.string.Minus)) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
                 } else {
 
                     val calculationResult = calculate()
+                    calculationBar = calculationResult
+                    result.text = calculationResult
 
-                    if (calculationResult == "0") {
-                        calculationBar = "0"
-                        result.text = "0"
-
-                    } else {
-                        calculationBar = calculationResult
-                        result.text = calculationResult
-                    }
                 }
 
             }
@@ -167,13 +139,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun handleOperatorButton(operator: String) {
+        if (calculationBar.last().toString() !in operators ) {
+            calculationBar += operator
+            result.text = calculationBar
+        }
+    }
+
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
         var result = 0
         var operatorElement = ""
 
-        val expressionList = calculationBar.split(reg).map { numberString ->
-            numberString.replace(" ", "")
+        var expressionList = calculationBar.split(reg)
+                .map { numberString ->
+                    numberString.replace(" ", "")
+                }
+                .filter { element ->
+                    element != ""
+                }
+
+        if (expressionList.first() == "-") {
+            expressionList = listOf("0") + expressionList
         }
 
         expressionList.forEachIndexed { index, element ->
@@ -200,7 +187,4 @@ class MainActivity : AppCompatActivity() {
         return result.toString()
     }
 
-    companion object {
-        private const val START_CHAR = "0"
-    }
 }
