@@ -4,8 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val START_CHAR = "0"
+        private val operators = listOf("+","-")
+    }
+
 
     private lateinit var buttonZero: Button
     private lateinit var buttonOne: Button
@@ -24,7 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonClearAll: Button
 
     private lateinit var result: TextView
-    private var calculationBar = " "
+
+    private var calculationBar = "0"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         result = findViewById(R.id.resultID)
 
         buttonClearAll.setOnClickListener {
-            calculationBar = " "
+            calculationBar = "0"
             result.text = "0"
         }
 
@@ -59,138 +68,81 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonOne.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "1"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.One)
-                result.text = calculationBar
-            }
+            handleButtonPressing("1")
         }
 
+
         buttonTwo.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "2"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Two)
-                result.text = calculationBar
-            }
+            handleButtonPressing("2")
         }
 
         buttonThree.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "3"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Three)
-                result.text = calculationBar
-            }
+            handleButtonPressing("3")
         }
 
         buttonFour.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "4"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Four)
-                result.text = calculationBar
-            }
+            handleButtonPressing("4")
         }
 
         buttonFive.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "5"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Five)
-                result.text = calculationBar
-            }
+            handleButtonPressing("5")
         }
 
         buttonSix.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "6"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Six)
-                result.text = calculationBar
-            }
+            handleButtonPressing("6")
         }
 
         buttonSeven.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "7"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Seven)
-                result.text = calculationBar
-            }
+            handleButtonPressing("7")
         }
 
         buttonEight.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "8"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Eight)
-                result.text = calculationBar
-            }
+            handleButtonPressing("8")
         }
 
         buttonNine.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "9"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Nine)
-                result.text = calculationBar
-            }
+            handleButtonPressing("9")
         }
 
         buttonSum.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "0"
-                result.text = "0"
-            }
-            if (calculationBar.last().toString() != getString(R.string.Sum)) {
-                calculationBar += getString(R.string.Sum)
-                result.text = calculationBar
-            }
+            handleOperatorButton("+")
         }
+
         buttonMinus.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "0"
-                result.text = "0"
-            }
-            if (calculationBar.last().toString() != getString(R.string.Minus)) {
-                calculationBar += getString(R.string.Minus)
-                result.text = calculationBar
-            }
+            handleOperatorButton("-")
         }
 
         buttonCalculate.setOnClickListener {
-            if (calculationBar.last().toString() != getString(R.string.Sum) && calculationBar.last().toString() != getString(R.string.Minus)) {
+            if (calculationBar.last().toString() != getString(R.string.Sum)
+                    && calculationBar.last().toString() != getString(R.string.Minus)) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
                 } else {
 
                     val calculationResult = calculate()
+                    calculationBar = calculationResult
+                    result.text = calculationResult
 
-                    if (calculationResult == "0") {
-                        calculationBar = " "
-                        result.text = "0"
-
-                    } else if (calculationResult.first() == '-') {
-                        calculationBar = "0$calculationResult"
-                        result.text = calculationResult
-
-                    } else {
-                        calculationBar = calculationResult
-                        result.text = calculationResult
-                    }
                 }
+
             }
+        }
+    }
+
+    private fun handleButtonPressing(number: String) {
+        if (calculationBar == START_CHAR) {
+            calculationBar = number
+            result.text = calculationBar
+        } else {
+            calculationBar += number
+            result.text = calculationBar
+        }
+    }
+
+    private fun handleOperatorButton(operator: String) {
+        if (calculationBar.last().toString() !in operators ) {
+            calculationBar += operator
+            result.text = calculationBar
         }
     }
 
@@ -199,8 +151,16 @@ class MainActivity : AppCompatActivity() {
         var result = 0
         var operatorElement = ""
 
-        val expressionList = calculationBar.split(reg).map { numberString ->
-            numberString.replace(" ", "")
+        var expressionList = calculationBar.split(reg)
+                .map { numberString ->
+                    numberString.replace(" ", "")
+                }
+                .filter { element ->
+                    element != ""
+                }
+
+        if (expressionList.first() == "-") {
+            expressionList = listOf("0") + expressionList
         }
 
         expressionList.forEachIndexed { index, element ->
@@ -221,7 +181,10 @@ class MainActivity : AppCompatActivity() {
                     result -= element.toInt()
                 }
             }
+            Toast.makeText(applicationContext, R.string.ToastMassage,
+                    Toast.LENGTH_SHORT).show()
         }
         return result.toString()
     }
+
 }

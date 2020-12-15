@@ -40,8 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/sum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headText"
-        tools:targetApi="o" />
+        app:layout_constraintTop_toBottomOf="@+id/headText" />
 
 
     <Button
@@ -241,7 +240,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seven" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
