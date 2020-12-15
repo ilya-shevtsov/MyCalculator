@@ -10,9 +10,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val START_CHAR = "0"
-        private val operators = listOf("+","-")
+        private val operators = listOf("+", "-")
     }
-
 
     private lateinit var buttonZero: Button
     private lateinit var buttonOne: Button
@@ -71,7 +70,6 @@ class MainActivity : AppCompatActivity() {
             handleButtonPressing("1")
         }
 
-
         buttonTwo.setOnClickListener {
             handleButtonPressing("2")
         }
@@ -117,14 +115,12 @@ class MainActivity : AppCompatActivity() {
                     && calculationBar.last().toString() != getString(R.string.Minus)) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
-                } else {
 
+                } else {
                     val calculationResult = calculate()
                     calculationBar = calculationResult
                     result.text = calculationResult
-
                 }
-
             }
         }
     }
@@ -140,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOperatorButton(operator: String) {
-        if (calculationBar.last().toString() !in operators ) {
+        if (calculationBar.last().toString() !in operators) {
             calculationBar += operator
             result.text = calculationBar
         }
@@ -186,5 +182,4 @@ class MainActivity : AppCompatActivity() {
         }
         return result.toString()
     }
-
 }
