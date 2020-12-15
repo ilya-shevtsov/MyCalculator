@@ -181,8 +181,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonCalculate.setOnClickListener {
-            if (calculationBar.last().toString() != getString(R.string.Sum) &&
-                    calculationBar.last().toString() != getString(R.string.Minus)) {
+            if (calculationBar.last().toString() != getString(R.string.Sum)
+                    && calculationBar.last().toString() != getString(R.string.Minus)
+                    && calculationBar.first().toString() != getString(R.string.Sum)
+                    && calculationBar.first().toString() != getString(R.string.Minus)) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
                 } else {
@@ -197,7 +199,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         calculationResult.first() == '-' -> {
                             calculationBar = calculationResult
-                            result.text = calculationResult.removePrefix("0")
+                            result.text = calculationResult
 
                         }
                         else -> {
