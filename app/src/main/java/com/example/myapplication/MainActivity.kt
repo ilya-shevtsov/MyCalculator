@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var result: TextView
     private var calculationBar = " "
-    var a =""
+    var a = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,7 +144,10 @@ class MainActivity : AppCompatActivity() {
             if (calculationBar.first().toString() == " ") {
                 calculationBar = "9"
                 result.text = calculationBar
-            } else {
+
+            }
+
+            else {
                 calculationBar += getString(R.string.Nine)
                 result.text = calculationBar
             }
@@ -161,10 +164,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         buttonMinus.setOnClickListener {
-//            if (calculationBar.first().toString()=="-"){
-//
-//            }
-
             if (calculationBar.first().toString() == " ") {
                 calculationBar = "0"
                 result.text = "0"
@@ -198,7 +197,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         calculationResult.first() == '-' -> {
                             calculationBar = calculationResult
-                            result.text = calculationResult
+                            result.text = calculationResult.removePrefix("0")
 
                         }
                         else -> {
@@ -210,10 +209,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-            Toast.makeText(applicationContext, R.string.ToastMassage,
-                    Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
         var result = 0
@@ -241,6 +239,8 @@ class MainActivity : AppCompatActivity() {
                     result -= element.toInt()
                 }
             }
+            Toast.makeText(applicationContext, R.string.ToastMassage,
+                    Toast.LENGTH_SHORT).show()
         }
         return result.toString()
     }
