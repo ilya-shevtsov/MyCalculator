@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var result: TextView
 
     private var calculationBar = " "
-    private var separateCalRes = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,9 +145,7 @@ class MainActivity : AppCompatActivity() {
                 calculationBar = "9"
                 result.text = calculationBar
 
-            }
-
-            else {
+            } else {
                 calculationBar += getString(R.string.Nine)
                 result.text = calculationBar
             }
@@ -160,26 +157,29 @@ class MainActivity : AppCompatActivity() {
                 result.text = "0"
             }
             if (calculationBar.first().toString() == "-") {
-                calculationBar = "0$separateCalRes"
+                calculationBar = "0$calculationBar"
                 calculationBar += getString(R.string.Sum)
                 result.text = calculationBar.removePrefix("0")
             }
-            if (calculationBar.last().toString() != getString(R.string.Sum) && calculationBar.last().toString() != getString(R.string.Minus)){
+            if (calculationBar.last().toString() != getString(R.string.Sum)
+                    && calculationBar.last().toString() != getString(R.string.Minus)) {
                 calculationBar += getString(R.string.Sum)
                 result.text = calculationBar
             }
         }
+
         buttonMinus.setOnClickListener {
             if (calculationBar.first().toString() == " ") {
                 calculationBar = "0"
                 result.text = "0"
             }
             if (calculationBar.first().toString() == "-") {
-                calculationBar = "0$separateCalRes"
+                calculationBar = "0$calculationBar"
                 calculationBar += getString(R.string.Minus)
                 result.text = calculationBar.removePrefix("0")
             }
-            if (calculationBar.last().toString() != getString(R.string.Minus) && calculationBar.last().toString() != getString(R.string.Sum)){
+            if (calculationBar.last().toString() != getString(R.string.Minus)
+                    && calculationBar.last().toString() != getString(R.string.Sum)) {
                 calculationBar += getString(R.string.Minus)
                 result.text = calculationBar
             }
@@ -196,23 +196,14 @@ class MainActivity : AppCompatActivity() {
 
                     val calculationResult = calculate()
 
-                    when {
-                        calculationResult == "0" -> {
-                            calculationBar = " "
-                            result.text = "0"
+                    if (calculationResult == "0") {
+                        calculationBar = " "
+                        result.text = "0"
 
-                        }
-                        calculationResult.first() == '-' -> {
-                            calculationBar = calculationResult
-                            result.text = calculationResult
-
-                        }
-                        else -> {
-                            calculationBar = calculationResult
-                            result.text = calculationResult
-                        }
+                    } else {
+                        calculationBar = calculationResult
+                        result.text = calculationResult
                     }
-                    separateCalRes = calculationResult
                 }
 
             }
