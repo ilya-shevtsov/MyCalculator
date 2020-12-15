@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var result: TextView
 
-    private var calculationBar = " "
+    private var calculationBar = "0"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         result = findViewById(R.id.resultID)
 
         buttonClearAll.setOnClickListener {
-            calculationBar = " "
+            calculationBar = "0"
             result.text = "0"
         }
 
@@ -61,94 +62,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonOne.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "1"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.One)
-                result.text = calculationBar
-            }
+            handleButtonPressing("1")
         }
 
+
         buttonTwo.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "2"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Two)
-                result.text = calculationBar
-            }
+            handleButtonPressing("2")
         }
 
         buttonThree.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "3"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Three)
-                result.text = calculationBar
-            }
+            handleButtonPressing("3")
         }
 
         buttonFour.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "4"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Four)
-                result.text = calculationBar
-            }
+            handleButtonPressing("4")
         }
 
         buttonFive.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "5"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Five)
-                result.text = calculationBar
-            }
+            handleButtonPressing("5")
         }
 
         buttonSix.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "6"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Six)
-                result.text = calculationBar
-            }
+            handleButtonPressing("6")
         }
 
         buttonSeven.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "7"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Seven)
-                result.text = calculationBar
-            }
+            handleButtonPressing("7")
         }
 
         buttonEight.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "8"
-                result.text = calculationBar
-            } else {
-                calculationBar += getString(R.string.Eight)
-                result.text = calculationBar
-            }
+            handleButtonPressing("8")
         }
 
         buttonNine.setOnClickListener {
-            if (calculationBar.first().toString() == " ") {
-                calculationBar = "9"
-                result.text = calculationBar
-
-            } else {
-                calculationBar += getString(R.string.Nine)
-                result.text = calculationBar
-            }
+            handleButtonPressing("9")
         }
 
         buttonSum.setOnClickListener {
@@ -197,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                     val calculationResult = calculate()
 
                     if (calculationResult == "0") {
-                        calculationBar = " "
+                        calculationBar = "0"
                         result.text = "0"
 
                     } else {
@@ -207,6 +154,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
+        }
+    }
+
+    private fun handleButtonPressing(number: String) {
+        if (calculationBar == START_CHAR) {
+            calculationBar = number
+            result.text = calculationBar
+        } else {
+            calculationBar += number
+            result.text = calculationBar
         }
     }
 
@@ -243,5 +200,7 @@ class MainActivity : AppCompatActivity() {
         return result.toString()
     }
 
-
+    companion object {
+        private const val START_CHAR = "0"
+    }
 }
