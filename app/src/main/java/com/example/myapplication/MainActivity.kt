@@ -25,8 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonClearAll: Button
 
     private lateinit var result: TextView
+
     private var calculationBar = " "
-    var a = ""
+    private var separateCalRes = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,7 +159,11 @@ class MainActivity : AppCompatActivity() {
                 calculationBar = "0"
                 result.text = "0"
             }
-            if (calculationBar.last().toString() != getString(R.string.Sum)) {
+            if (calculationBar.first().toString() == "-") {
+                calculationBar = "0$separateCalRes"
+                calculationBar += getString(R.string.Sum)
+                result.text = calculationBar.removePrefix("0")
+            } else {
                 calculationBar += getString(R.string.Sum)
                 result.text = calculationBar
             }
@@ -170,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             }
             if (calculationBar.last().toString() != getString(R.string.Minus)) {
                 if (calculationBar.first().toString() == "-") {
-                    calculationBar = "0$a"
+                    calculationBar = "0$separateCalRes"
                     calculationBar += getString(R.string.Minus)
                     result.text = calculationBar.removePrefix("0")
                 } else {
@@ -207,7 +212,7 @@ class MainActivity : AppCompatActivity() {
                             result.text = calculationResult
                         }
                     }
-                    a = calculationResult
+                    separateCalRes = calculationResult
                 }
 
             }
