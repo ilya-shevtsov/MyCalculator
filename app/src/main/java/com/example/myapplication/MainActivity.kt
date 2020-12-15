@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var result: TextView
     private var calculationBar = " "
+    var a =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,13 +161,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
         buttonMinus.setOnClickListener {
+//            if (calculationBar.first().toString()=="-"){
+//
+//            }
+
             if (calculationBar.first().toString() == " ") {
                 calculationBar = "0"
                 result.text = "0"
             }
             if (calculationBar.last().toString() != getString(R.string.Minus)) {
-                calculationBar += getString(R.string.Minus)
-                result.text = calculationBar
+                if (calculationBar.first().toString() == "-") {
+                    calculationBar = "0$a"
+                    calculationBar += getString(R.string.Minus)
+                    result.text = calculationBar.removePrefix("0")
+                } else {
+                    calculationBar += getString(R.string.Minus)
+                    result.text = calculationBar
+                }
             }
         }
 
@@ -179,7 +190,6 @@ class MainActivity : AppCompatActivity() {
 
                     val calculationResult = calculate()
 
-
                     when {
                         calculationResult == "0" -> {
                             calculationBar = " "
@@ -187,7 +197,7 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         calculationResult.first() == '-' -> {
-                            calculationBar = "0$calculationResult"
+                            calculationBar = calculationResult
                             result.text = calculationResult
 
                         }
@@ -196,13 +206,14 @@ class MainActivity : AppCompatActivity() {
                             result.text = calculationResult
                         }
                     }
+                    a = calculationResult
                 }
+
             }
             Toast.makeText(applicationContext, R.string.ToastMassage,
                     Toast.LENGTH_SHORT).show()
         }
     }
-
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
         var result = 0
