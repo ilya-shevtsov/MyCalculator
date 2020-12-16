@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonMinus: Button
     private lateinit var buttonCalculate: Button
     private lateinit var buttonClearAll: Button
+    private lateinit var buttonClearLast: Button
 
     private lateinit var result: TextView
     private lateinit var headText: TextView
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         buttonMinus = findViewById(R.id.minus)
         buttonCalculate = findViewById(R.id.calculate)
         buttonClearAll = findViewById(R.id.clearAll)
+        buttonClearLast = findViewById(R.id.deleteLastElement)
 
         result = findViewById(R.id.resultID)
         headText = findViewById(R.id.headText)
@@ -65,6 +67,12 @@ class MainActivity : AppCompatActivity() {
             calculationBar = "0"
             result.text = "0"
         }
+
+        buttonClearLast.setOnClickListener {
+            calculationBar = calculationBar.dropLast(1)
+            result.text = calculationBar
+        }
+
 
         buttonZero.setOnClickListener {
             calculationBar += getString(R.string.Zero)
