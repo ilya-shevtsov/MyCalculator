@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonMinus: Button
     private lateinit var buttonCalculate: Button
     private lateinit var buttonClearAll: Button
+    private lateinit var buttonClearLast: Button
 
     private lateinit var result: TextView
     private lateinit var headText: TextView
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         buttonMinus = findViewById(R.id.minus)
         buttonCalculate = findViewById(R.id.calculate)
         buttonClearAll = findViewById(R.id.clearAll)
+        buttonClearLast = findViewById(R.id.deleteLastElement)
 
         result = findViewById(R.id.resultID)
         headText = findViewById(R.id.headText)
@@ -64,6 +66,10 @@ class MainActivity : AppCompatActivity() {
         buttonClearAll.setOnClickListener {
             calculationBar = "0"
             result.text = "0"
+        }
+
+        buttonClearLast.setOnClickListener {
+            handleDeleteLastButton()
         }
 
         buttonZero.setOnClickListener {
@@ -117,7 +123,8 @@ class MainActivity : AppCompatActivity() {
 
         buttonCalculate.setOnClickListener {
             if (calculationBar.last().toString() != getString(R.string.Sum)
-                    && calculationBar.last().toString() != getString(R.string.Minus)) {
+                && calculationBar.last().toString() != getString(R.string.Minus)
+            ) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
 
@@ -167,18 +174,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun handleDeleteLastButton() {
+        if (
+            calculationBar.length < 2
+            || (calculationBar.length <= 2 && calculationBar.first().toString() == "-")
+        ) {
+            calculationBar = "0"
+            result.text = calculationBar
+        }
+        if (calculationBar.length > 1) {
+            calculationBar = calculationBar.dropLast(1)
+            result.text = calculationBar
+        }
+    }
+
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
         var result = 0
         var operatorElement = "+"
 
         var expressionList = calculationBar.split(reg)
-                .map { numberString ->
-                    numberString.replace(" ", "")
-                }
-                .filter { element ->
-                    element != ""
-                }
+            .map { numberString ->
+                numberString.replace(" ", "")
+            }
+            .filter { element ->
+                element != ""
+            }
 
         if (expressionList.first() == "-") {
             expressionList = listOf("0") + expressionList
@@ -196,8 +217,10 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-            Toast.makeText(applicationContext, R.string.ToastMassage,
-                    Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext, R.string.ToastMassage,
+                Toast.LENGTH_SHORT
+            ).show()
         }
         return result.toString()
     }
