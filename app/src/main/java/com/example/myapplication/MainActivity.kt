@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity() {
             expressionList = listOf("0") + expressionList
         }
 
-        expressionList.forEachIndexed { index, element ->
+        expressionList.forEach { element ->
 
             when (element) {
                 "+" -> operatorElement = "+"
