@@ -33,17 +33,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonCalculate: Button
     private lateinit var buttonClearAll: Button
 
-
     private lateinit var result: TextView
     private lateinit var headText: TextView
 
     private var calculationBar = "0"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         buttonZero = findViewById(R.id.zero)
         buttonOne = findViewById(R.id.one)
@@ -153,7 +150,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
     private fun handleButtonPressing(number: String) {
         if (calculationBar == START_CHAR) {
             calculationBar = number
@@ -189,7 +185,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         expressionList.forEach { element ->
-
             when (element) {
                 "+" -> operatorElement = "+"
                 "-" -> operatorElement = "-"
@@ -201,11 +196,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
             Toast.makeText(applicationContext, R.string.ToastMassage,
                     Toast.LENGTH_SHORT).show()
         }
         return result.toString()
     }
-
 }
