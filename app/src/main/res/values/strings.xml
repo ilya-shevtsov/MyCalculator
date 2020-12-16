@@ -21,6 +21,13 @@
     
     <string name="ToastMassage">Calculation Done!</string>
 
+    <string name="SettingBar">Settings</string>
+    <string name="ChangeTitleColor">Title color</string>
+    <string name="colorBlue">Change to blue</string>
+    <string name="colorRed">Change to red</string>
+    <string name="colorGreen">Change to green</string>
+
+
 
     <string name="esterEgg">RUN!</string>
     <string name="esterEggVal">4+8+15+16+23+42</string>
