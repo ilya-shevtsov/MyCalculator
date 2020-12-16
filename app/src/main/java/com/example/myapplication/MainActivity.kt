@@ -139,13 +139,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.change_head_text_bar_color) {
-            when (item.itemId) {
-                R.id.change_hear_text_color_blue -> headText = headText.setBackgroundResource(R.color.blue)
-                R.id.change_hear_text_color_red -> headText.setBackgroundResource(R.color.red)
-                R.id.change_hear_text_color_green -> headText.setBackgroundResource(R.color.green)
-            }
+        if (item.itemId == R.id.change_hear_text_color_blue) {
+            headText.setBackgroundResource(R.color.blue)
         }
+
         return true
     }
 
