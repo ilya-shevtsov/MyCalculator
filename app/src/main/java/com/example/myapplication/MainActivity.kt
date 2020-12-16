@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -139,10 +140,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.change_hear_text_color_blue) {
-            headText.setBackgroundResource(R.color.blue)
+        when (item.itemId) {
+            R.id.change_title_color_blue ->
+                headText.setBackgroundResource(R.color.blue)
+            R.id.change_title_color_red ->
+                headText.setBackgroundResource(R.color.red)
+            R.id.change_title_color_green ->
+                headText.setBackgroundResource(R.color.green)
+            R.id.change_title_color_default ->
+                headText.setBackgroundResource(R.color.black)
         }
-
         return true
     }
 
@@ -167,7 +174,7 @@ class MainActivity : AppCompatActivity() {
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
         var result = 0
-        var operatorElement = ""
+        var operatorElement = "+"
 
         var expressionList = calculationBar.split(reg)
                 .map { numberString ->
@@ -182,23 +189,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         expressionList.forEachIndexed { index, element ->
-            if (index == 0) {
-                result = element.toInt()
 
-            } else if (element == "+") {
-                operatorElement = "+"
-
-            } else if (element == "-") {
-                operatorElement = "-"
-
-            } else {
-                if (operatorElement == "+") {
-                    result += element.toInt()
-
-                } else {
-                    result -= element.toInt()
+            when (element) {
+                "+" -> operatorElement = "+"
+                "-" -> operatorElement = "-"
+                else -> {
+                    when (operatorElement) {
+                        "+" -> result += element.toInt()
+                        "-" -> result -= element.toInt()
+                        else -> throw RuntimeException("Invalid OperatorElement")
+                    }
                 }
             }
+
             Toast.makeText(applicationContext, R.string.ToastMassage,
                     Toast.LENGTH_SHORT).show()
         }

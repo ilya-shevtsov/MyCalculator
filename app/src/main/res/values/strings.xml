@@ -22,10 +22,11 @@
     <string name="ToastMassage">Calculation Done!</string>
 
     <string name="SettingBar">Settings</string>
-    <string name="ChangeTitleColor">Title color</string>
+    <string name="TitleChangeColor">Title color</string>
     <string name="colorBlue">Change to blue</string>
     <string name="colorRed">Change to red</string>
     <string name="colorGreen">Change to green</string>
+    <string name="colorDefault">Change to default</string>
 
 
 
