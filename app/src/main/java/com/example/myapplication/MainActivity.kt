@@ -1,18 +1,21 @@
 package com.example.myapplication
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val START_CHAR = "0"
-        private val operators = listOf("+","-")
+        private val operators = listOf("+", "-")
     }
-
 
     private lateinit var buttonZero: Button
     private lateinit var buttonOne: Button
@@ -30,7 +33,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonCalculate: Button
     private lateinit var buttonClearAll: Button
 
+
     private lateinit var result: TextView
+    private lateinit var headText: TextView
 
     private var calculationBar = "0"
 
@@ -38,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         buttonZero = findViewById(R.id.zero)
         buttonOne = findViewById(R.id.one)
@@ -56,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         buttonClearAll = findViewById(R.id.clearAll)
 
         result = findViewById(R.id.resultID)
+        headText = findViewById(R.id.headText)
 
         buttonClearAll.setOnClickListener {
             calculationBar = "0"
@@ -70,7 +77,6 @@ class MainActivity : AppCompatActivity() {
         buttonOne.setOnClickListener {
             handleButtonPressing("1")
         }
-
 
         buttonTwo.setOnClickListener {
             handleButtonPressing("2")
@@ -117,17 +123,36 @@ class MainActivity : AppCompatActivity() {
                     && calculationBar.last().toString() != getString(R.string.Minus)) {
                 if (calculationBar == getString(R.string.esterEggVal)) {
                     result.text = getString(R.string.esterEgg)
-                } else {
 
+                } else {
                     val calculationResult = calculate()
                     calculationBar = calculationResult
                     result.text = calculationResult
-
                 }
-
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.settings, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.change_title_color_blue ->
+                headText.setBackgroundResource(R.color.blue)
+            R.id.change_title_color_red ->
+                headText.setBackgroundResource(R.color.red)
+            R.id.change_title_color_green ->
+                headText.setBackgroundResource(R.color.green)
+            R.id.change_title_color_default ->
+                headText.setBackgroundResource(R.color.black)
+        }
+        return true
+    }
+
 
     private fun handleButtonPressing(number: String) {
         if (calculationBar == START_CHAR) {
@@ -140,7 +165,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOperatorButton(operator: String) {
-        if (calculationBar.last().toString() !in operators ) {
+        if (calculationBar.last().toString() !in operators) {
             calculationBar += operator
             result.text = calculationBar
         }
@@ -149,7 +174,7 @@ class MainActivity : AppCompatActivity() {
     private fun calculate(): String {
         val reg = Regex("(?<=[-+])|(?=[+-])")
         var result = 0
-        var operatorElement = ""
+        var operatorElement = "+"
 
         var expressionList = calculationBar.split(reg)
                 .map { numberString ->
@@ -164,23 +189,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         expressionList.forEachIndexed { index, element ->
-            if (index == 0) {
-                result = element.toInt()
 
-            } else if (element == "+") {
-                operatorElement = "+"
-
-            } else if (element == "-") {
-                operatorElement = "-"
-
-            } else {
-                if (operatorElement == "+") {
-                    result += element.toInt()
-
-                } else {
-                    result -= element.toInt()
+            when (element) {
+                "+" -> operatorElement = "+"
+                "-" -> operatorElement = "-"
+                else -> {
+                    when (operatorElement) {
+                        "+" -> result += element.toInt()
+                        "-" -> result -= element.toInt()
+                        else -> throw RuntimeException("Invalid OperatorElement")
+                    }
                 }
             }
+
             Toast.makeText(applicationContext, R.string.ToastMassage,
                     Toast.LENGTH_SHORT).show()
         }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/settings_bar"
+        android:icon="@drawable/change_color_bar"
+        android:title="@string/SettingBar"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/change_title_color_bar"
+        android:title="@string/TitleChangeColor"
+        app:showAsAction="never" >
+        <menu>
+            <item
+            android:id="@+id/change_title_color_blue"
+            android:icon="@drawable/change_color_blue"
+            android:title="@string/colorBlue"
+            app:showAsAction="never" />
+
+            <item
+            android:id="@+id/change_title_color_red"
+            android:icon="@drawable/change_color_red"
+            android:title="@string/colorRed"
+            app:showAsAction="never" />
+
+            <item
+                android:id="@+id/change_title_color_green"
+                android:icon="@drawable/change_color_green"
+                android:title="@string/colorGreen"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/change_title_color_default"
+                android:icon="@drawable/change_color_default"
+                android:title="@string/colorDefault"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+</menu>
