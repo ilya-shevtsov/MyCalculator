@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">My Application</string>
     <string name="Title">A simple calculator</string>
     <string name="Result">0</string>
@@ -32,7 +32,9 @@
 
 
 
-    <string name="esterEgg">RUN!</string>
-    <string name="esterEggVal">4+8+15+16+23+42</string>
+    <string name="lostEsterEgg">RUN!</string>
+    <string name="lostEsterEggVal">4+8+15+16+23+42</string>
+    <string name="quickMathsEasterEgg">Quick Maths</string>
+    <string name="quickMathsEasterEggVal" tools:ignore="TypographyDashes">2+2-1</string>
 
 </resources>

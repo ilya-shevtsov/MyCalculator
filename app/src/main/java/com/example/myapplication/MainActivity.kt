@@ -125,17 +125,22 @@ class MainActivity : AppCompatActivity() {
             if (calculationBar.last().toString() != getString(R.string.Sum)
                 && calculationBar.last().toString() != getString(R.string.Minus)
             ) {
-                if (calculationBar == getString(R.string.esterEggVal)) {
-                    result.text = getString(R.string.esterEgg)
-
-                } else {
-                    val calculationResult = calculate()
-                    calculationBar = calculationResult
-                    result.text = calculationResult
+                when (calculationBar) {
+                    getString(R.string.lostEsterEggVal) -> result.text =
+                        getString(R.string.lostEsterEgg)
+                    getString(R.string.quickMathsEasterEggVal) -> result.text =
+                        getString(R.string.quickMathsEasterEgg)
+                    else -> {
+                        val calculationResult = calculate()
+                        calculationBar = calculationResult
+                        result.text = calculationResult
+                    }
                 }
+
             }
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
