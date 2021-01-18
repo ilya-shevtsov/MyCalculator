@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var headText: TextView
 
     private val onPlaneReceiver: BroadcastReceiver = SimpleBroadcast()
-    private val intentFilter: IntentFilter =   IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+    private val intentFilter: IntentFilter = IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
 
     private var calculationBar = "0"
 
@@ -68,8 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         result = findViewById(R.id.resultID)
         headText = findViewById(R.id.headText)
-
-
 
         buttonClearAll.setOnClickListener {
             calculationBar = "0"
@@ -152,22 +150,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        registerReceiver(onPlaneReceiver,intentFilter)
-        val intentActionService = Intent(
-            this, ActionService::class.java)
-        startService(intentActionService)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(onPlaneReceiver)
+        registerReceiver(onPlaneReceiver, intentFilter)
     }
 
     override fun onStop() {
         super.onStop()
         val intentActionService = Intent(
-            this, ActionService::class.java)
-        stopService(intentActionService)
+            this, ActionService::class.java
+        )
+        startService(intentActionService)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
