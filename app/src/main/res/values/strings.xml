@@ -36,5 +36,8 @@
     <string name="lostEsterEggVal">4+8+15+16+23+42</string>
     <string name="quickMathsEasterEgg">Quick Maths</string>
     <string name="quickMathsEasterEggVal" tools:ignore="TypographyDashes">2+2-1</string>
+    <string name="csEasterEgg">FlashBang out!</string>
+    <string name="csEasterEggVal">1+3+3+7</string>
+    <string name="onPlaceToast">You should not make calculations while being on a plane</string>
 
 </resources>

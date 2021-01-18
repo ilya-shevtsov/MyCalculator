@@ -1,6 +1,9 @@
 package com.example.myapplication
 
 
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -37,6 +40,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var result: TextView
     private lateinit var headText: TextView
 
+    private val onPlaneReceiver: BroadcastReceiver = SimpleBroadcast()
+    private val intentFilter: IntentFilter =   IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+
     private var calculationBar = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +68,8 @@ class MainActivity : AppCompatActivity() {
 
         result = findViewById(R.id.resultID)
         headText = findViewById(R.id.headText)
+
+
 
         buttonClearAll.setOnClickListener {
             calculationBar = "0"
@@ -130,17 +138,37 @@ class MainActivity : AppCompatActivity() {
                         getString(R.string.lostEsterEgg)
                     getString(R.string.quickMathsEasterEggVal) -> result.text =
                         getString(R.string.quickMathsEasterEgg)
+                    getString(R.string.csEasterEggVal) -> result.text =
+                        getString(R.string.csEasterEgg)
                     else -> {
                         val calculationResult = calculate()
                         calculationBar = calculationResult
                         result.text = calculationResult
                     }
                 }
-
             }
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        registerReceiver(onPlaneReceiver,intentFilter)
+        val intentActionService = Intent(
+            this, ActionService::class.java)
+        startService(intentActionService)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(onPlaneReceiver)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val intentActionService = Intent(
+            this, ActionService::class.java)
+        stopService(intentActionService)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
