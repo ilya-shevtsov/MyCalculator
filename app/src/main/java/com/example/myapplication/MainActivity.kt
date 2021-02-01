@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
@@ -219,7 +218,7 @@ class MainActivity : AppCompatActivity() {
 
         var expressionList = calculationBar.split(reg)
             .map { numberString ->
-                numberString.replace(" ", "")
+                return@map numberString.replace(" ", "")
             }
             .filter { element ->
                 element != ""
